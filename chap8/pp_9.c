@@ -14,7 +14,7 @@ int main(void)
 {
     char c, map[SIZE][SIZE];
     int i = 0, j = 0, direction;
-    bool next = false;
+    bool next = false, terminated = false;
 
     srand((unsigned) time(NULL));
 
@@ -70,7 +70,29 @@ int main(void)
                         break;
                     }
             }
-            if (map[i + 1][j] != '.' && map[i - 1][j] != '.' && map[i][j + 1] != '.' && map[i][j - 1] != '.') {
+
+            if (i == 0 && j > 0 && j < SIZE - 1) {
+                if (map[i + 1][j] != '.' && map[i][j + 1] != '.' && map[i][j - 1] != '.') {
+                    terminated = true;
+                }
+            } else if (j == 0 && i > 0 && i < SIZE - 1) {
+                if (map[i + 1][j] != '.' && map[i - 1][j] != '.' && map[i][j + 1] != '.') {
+                    terminated = true;
+                }
+            } else if (i == SIZE - 1 && j > 0 && j < SIZE - 1) {
+                if (map[i - 1][j] != '.' && map[i][j + 1] != '.' && map[i][j - 1] != '.') {
+                    terminated = true;
+                }
+            } else if (j == SIZE - 1 && i > 0 && i < SIZE - 1) {
+                if (map[i + 1][j] != '.'&& map[i - 1][j] != '.' && map[i][j - 1] != '.') {
+                    terminated = true;
+                }
+            } else {
+                if (map[i + 1][j] != '.'&& map[i - 1][j] != '.' && map[i][j + 1] != '.' && map[i][j - 1] != '.') {
+                    terminated = true;
+                }
+            }
+            if (terminated) {
                 for (i = 0; i < SIZE; i++) {
                     for (j = 0; j < SIZE; j++) {
                         printf("%c ", map[i][j]);
