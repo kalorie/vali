@@ -16,15 +16,18 @@ int main(void)
     srand((unsigned) time(NULL));
 
     do {
-        printf("\n");
         bool win = play_game();
         if (win) {
             sum_wins++;
         } else {
             sum_loses++;
         }
+        printf("\n");
         printf("Play again? ");
-    } while ((c = toupper(getchar())) != 'N');
+        c = toupper(getchar());
+        getchar(); /* Trim the newline */
+        printf("\n");
+    } while (c != 'N');
 
     printf("Wins: %d Loses: %d\n", sum_wins, sum_loses);
 
@@ -48,7 +51,6 @@ bool play_game(void)
 {
     int sum = roll_dice() + roll_dice();
     printf("You rolled: %d\n", sum);
-    printf("Your point is %d\n", sum);
     switch (sum) {
         case 7:
         case 11:
@@ -59,6 +61,9 @@ bool play_game(void)
         case 12:
             printf("You lose!\n");
             return false;
+        default:
+            printf("Your point is %d\n", sum);
+            break;
     }
 
     while (1) {
