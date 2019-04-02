@@ -36,7 +36,7 @@ void push(char e)
     top++;
 }
 
-char pop()
+char pop(void)
 {
     if (top == 0) {
         exit(-2);
@@ -47,7 +47,7 @@ char pop()
     return c;
 }
 
-bool is_empty()
+bool is_empty(void)
 {
     return top == 0;
 }
