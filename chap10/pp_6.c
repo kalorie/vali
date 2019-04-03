@@ -16,6 +16,7 @@ void compute(char);
 
 int ctoi(char);
 void display(void);
+void clear(void);
 
 void push(int);
 int pop(void);
@@ -75,9 +76,19 @@ int pop(void)
     return c;
 }
 
+void clear(void)
+{
+    int i;
+    for (i = 0; i < SIZE; i++) {
+        stack[i] = 0;
+    }
+    top = 0;
+}
+
 void display(void)
 {
     printf("Value of expression: %d\n", pop());
+    clear();
 }
 
 void add(void)
